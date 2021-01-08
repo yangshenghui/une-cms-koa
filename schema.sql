@@ -159,6 +159,23 @@ CREATE TABLE book
   COLLATE = utf8mb4_general_ci;
 
 
+DROP TABLE IF EXISTS vedio;
+CREATE TABLE vedio
+(
+    id          int(11)     NOT NULL AUTO_INCREMENT,
+    title       varchar(50) NOT NULL,
+    author      varchar(30)          DEFAULT NULL,
+    summary     varchar(1000)        DEFAULT NULL,
+    image       varchar(100)         DEFAULT NULL,
+    create_time datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    update_time datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+    delete_time datetime(3)          DEFAULT NULL,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
+
+
 -- ----------------------------
 -- 用户-分组表
 -- ----------------------------
