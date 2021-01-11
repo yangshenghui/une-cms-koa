@@ -32,12 +32,8 @@ vedioApi.get('/:id', async ctx => {
 });
 
 vedioApi.get('/', async ctx => {
-  const vedios = await vedioDto.getVedios();
-  // if (!vedios || vedios.length < 1) {
-  //   throw new NotFound({
-  //     message: '没有找到相关视频'
-  //   });
-  // }
+  const vedios = await vedioDto.getVedios(ctx);
+  console.log(vedios)
   ctx.json(vedios);
 });
 
@@ -54,7 +50,7 @@ vedioApi.post('/', async ctx => {
   const v = await new CreateOrUpdateVedioValidator().validate(ctx);
   await vedioDto.createVedio(v);
   ctx.success({
-    code: 10255
+    code: 16
   });
 });
 
@@ -63,7 +59,7 @@ vedioApi.put('/:id', async ctx => {
   const id = getSafeParamId(ctx);
   await vedioDto.updateVedio(v, id);
   ctx.success({
-    code: 10256
+    code: 17
   });
 });
 
@@ -77,7 +73,7 @@ vedioApi.linDelete(
     const id = v.get('path.id');
     await vedioDto.deleteVedio(id);
     ctx.success({
-      code: 10257
+      code: 18
     });
   }
 );
