@@ -16,10 +16,9 @@ module.exports = {
     Domain: "qmmb7uflf.hn-bkt.clouddn.com"
   },
   wx: {
-    appid: "",
-    secret: "",
+    appid: "wxf6115a511e46d7cf",
+    secret: "dbe8288f5d7cf952726de4d48419c875",
     mch_id: "",
-    authorize_redirect_url: "", 
     notify_url: "",
   },
   wxpay: {

@@ -31,7 +31,7 @@ class WechatAuth {
       appid: this.appid,
       redirect_uri: redirect_url,
       response_type: 'code',
-      scope: scope,
+      scope: 'snsapi_userinfo',
       state: '123'
     }
 
