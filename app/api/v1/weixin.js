@@ -1,6 +1,10 @@
 import { config, LinRouter } from 'lin-mizar';
 import { TokenDao } from '../../dao/token';
 import { CustomerDao } from '../../dao/customer';
+import { TypeDao } from '../../dao/type';
+import { VedioDao } from '../../dao/vedio';
+
+
 
 
 const OAuth = require('node-wechat-oauth');
@@ -12,6 +16,8 @@ const weixinApi = new LinRouter({
 
 const tokenDto = new TokenDao();
 const customerDto = new CustomerDao();
+const typeDto = new TypeDao();
+const vedioDto = new VedioDao();
 
 const oauth = new OAuth(config.getItem('wx.appid', ''), config.getItem('wx.secret', ''));
 oauth.saveToken = (async(openid, token) => {
@@ -49,6 +55,25 @@ weixinApi.post('/weChatOAuth', async ctx => {
       openid: openid,
       nickname: userinfo.nickname
     }});
+});
+
+weixinApi.get('/getTypes', async ctx =>{
+  const types = await typeDto.getTypes();
+  ctx.json({
+    errorCode: 0,
+    data: types
+  });
+  
+});
+
+weixinApi.post('/getVedio', async ctx =>{
+  const id = ctx.request.body.id
+  const vedio = await vedioDto.getVedio(id);
+  ctx.json({
+    errorCode: 0,
+    data: vedio
+  });
+  
 });
 
 
