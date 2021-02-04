@@ -5,13 +5,27 @@ import { Type } from '../model/type';
 
 class VedioDao {
   
-  async getVedio (id) {
+  async getVedioById (id) {
     const vedio = await Vedio.findOne({
       where: {
         id
       }
     });
     return vedio;
+  }
+
+  async getVediosByTypeId (typeId, limit) {
+    const vedios = await Vedio.findAndCountAll({
+      where: {
+        typeId
+      },
+      order: [
+        ['id', 'desc']
+      ],
+      limit: limit,
+      offset: 0
+    });
+    return vedios;
   }
 
   async getVedioByKeyword (q) {

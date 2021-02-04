@@ -3,6 +3,7 @@ import { TokenDao } from '../../dao/token';
 import { CustomerDao } from '../../dao/customer';
 import { TypeDao } from '../../dao/type';
 import { VedioDao } from '../../dao/vedio';
+import { SwipeDao } from '../../dao/swipe';
 
 
 
@@ -18,6 +19,7 @@ const tokenDto = new TokenDao();
 const customerDto = new CustomerDao();
 const typeDto = new TypeDao();
 const vedioDto = new VedioDao();
+const swipeDto = new SwipeDao();
 
 const oauth = new OAuth(config.getItem('wx.appid', ''), config.getItem('wx.secret', ''));
 oauth.saveToken = (async(openid, token) => {
@@ -66,9 +68,9 @@ weixinApi.get('/getTypes', async ctx =>{
   
 });
 
-weixinApi.post('/getVedio', async ctx =>{
+weixinApi.post('/getVedioById', async ctx =>{
   const id = ctx.request.body.id
-  const vedio = await vedioDto.getVedio(id);
+  const vedio = await vedioDto.getVedioById(id);
   ctx.json({
     errorCode: 0,
     data: vedio
@@ -76,5 +78,24 @@ weixinApi.post('/getVedio', async ctx =>{
   
 });
 
+weixinApi.post('/getVediosByTypeId', async ctx =>{
+  const typeId = ctx.request.body.typeId
+  const limit = ctx.request.body.limit
+  const vedio = await vedioDto.getVediosByTypeId(typeId, limit);
+  ctx.json({
+    errorCode: 0,
+    data: vedio
+  });
+  
+});
+
+weixinApi.get('/getSwipes', async ctx =>{
+  const swipes = await swipeDto.getSwipes();
+  ctx.json({
+    errorCode: 0,
+    data: swipes
+  });
+  
+});
 
 module.exports = { weixinApi };
