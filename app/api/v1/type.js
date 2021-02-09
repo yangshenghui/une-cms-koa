@@ -10,7 +10,6 @@ import { getSafeParamId } from '../../lib/util';
 import { TypeNotFound } from '../../lib/exception';
 import { TypeDao } from '../../dao/type';
 
-// type 的红图实例
 const typeApi = new LinRouter({
   prefix: '/v1/type',
   module: '视频分类'

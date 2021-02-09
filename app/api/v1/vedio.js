@@ -22,7 +22,7 @@ const vedioDto = new VedioDao();
 vedioApi.get('/:id', async ctx => {
   const v = await new PositiveIdValidator().validate(ctx);
   const id = v.get('path.id');
-  const vedio = await vedioDto.getVedio(id);
+  const vedio = await vedioDto.getVedioById(id);
   if (!vedio) {
     throw new NotFound({
       code: 10253

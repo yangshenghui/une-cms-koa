@@ -4,6 +4,7 @@ import { CustomerDao } from '../../dao/customer';
 import { TypeDao } from '../../dao/type';
 import { VedioDao } from '../../dao/vedio';
 import { SwipeDao } from '../../dao/swipe';
+import { ReadDao } from '../../dao/read';
 
 
 
@@ -20,6 +21,7 @@ const customerDto = new CustomerDao();
 const typeDto = new TypeDao();
 const vedioDto = new VedioDao();
 const swipeDto = new SwipeDao();
+const readDto = new ReadDao();
 
 const oauth = new OAuth(config.getItem('wx.appid', ''), config.getItem('wx.secret', ''));
 oauth.saveToken = (async(openid, token) => {
@@ -97,5 +99,14 @@ weixinApi.get('/getSwipes', async ctx =>{
   });
   
 });
+
+weixinApi.get('/getReads', async ctx =>{
+  const reads = await readDto.getReads();
+  ctx.json({
+    errorCode: 0,
+    data: reads
+  });
+});
+
 
 module.exports = { weixinApi };

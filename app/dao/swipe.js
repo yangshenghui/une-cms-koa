@@ -24,7 +24,7 @@ class SwipeDao {
   }
 
   async getSwipes () {
-    const swipes = await Swipe.findAll();
+    const swipes = await Swipe.findAndCountAll();
     return swipes;
   }
 

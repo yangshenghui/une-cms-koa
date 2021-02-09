@@ -1,7 +1,6 @@
 import { LinRouter, NotFound, disableLoading } from 'lin-mizar';
 import { groupRequired } from '../../middleware/jwt';
 import {
-  SwipeSearchValidator,
   CreateOrUpdateSwipeValidator
 } from '../../validator/swipe';
 import { PositiveIdValidator } from '../../validator/common';
@@ -24,7 +23,7 @@ swipeApi.get('/:id', async ctx => {
   const swipe = await swipeDto.getSwipe(id);
   if (!swipe) {
     throw new NotFound({
-      code: 10022
+      code: 10058
     });
   }
   ctx.json(swipe);
