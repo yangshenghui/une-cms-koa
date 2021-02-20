@@ -57,16 +57,6 @@ class VedioDao {
   }
 
   async createVedio (v) {
-    // const vedio = await Vedio.findOne({
-    //   where: {
-    //     title: v.get('body.title')
-    //   }
-    // });
-    // if (vedio) {
-    //   throw new Forbidden({
-    //     code: 10254
-    //   });
-    // }
     const vd = new Vedio();
     vd.typeId = v.get('body.typeId');
     vd.title = v.get('body.title');

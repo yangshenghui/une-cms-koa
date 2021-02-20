@@ -2,8 +2,7 @@ import { Token } from '../model/token';
 
 class TokenDao {
   async getToken (openid) {
-    const token = await Token.findO
-    ne({
+    const token = await Token.findOne({
       where: {
         openid
       }

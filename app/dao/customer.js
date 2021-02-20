@@ -3,6 +3,7 @@ import Sequelize from 'sequelize';
 import { Customer } from '../model/customer';
 
 class CustomerDao {
+  
   async getCustomer (openid) {
     const customer = await Customer.findOne({
       where: {
@@ -56,15 +57,15 @@ class CustomerDao {
     } 
   }
 
-  async deleteCustomer (id) {
+  async deleteCustomer (openid) {
     const customer = await Customer.findOne({
       where: {
-        id
+        openid
       }
     });
     if (!customer) {
       throw new NotFound({
-        code: 10022
+        code: 10261
       });
     }
     customer.destroy();

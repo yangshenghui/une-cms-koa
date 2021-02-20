@@ -5,6 +5,7 @@ import { TypeDao } from '../../dao/type';
 import { VedioDao } from '../../dao/vedio';
 import { SwipeDao } from '../../dao/swipe';
 import { ReadDao } from '../../dao/read';
+import { WatchDao } from '../../dao/watch';
 
 
 
@@ -22,6 +23,7 @@ const typeDto = new TypeDao();
 const vedioDto = new VedioDao();
 const swipeDto = new SwipeDao();
 const readDto = new ReadDao();
+const watchDto = new WatchDao();
 
 const oauth = new OAuth(config.getItem('wx.appid', ''), config.getItem('wx.secret', ''));
 oauth.saveToken = (async(openid, token) => {
@@ -77,7 +79,6 @@ weixinApi.post('/getVedioById', async ctx =>{
     errorCode: 0,
     data: vedio
   });
-  
 });
 
 weixinApi.post('/getVediosByTypeId', async ctx =>{
@@ -100,11 +101,48 @@ weixinApi.get('/getSwipes', async ctx =>{
   
 });
 
-weixinApi.get('/getReads', async ctx =>{
-  const reads = await readDto.getReads();
+weixinApi.post('/getReads', async ctx =>{
+  const limit = ctx.request.body.limit
+  const reads = await readDto.getReads(limit);
   ctx.json({
     errorCode: 0,
     data: reads
+  });
+});
+
+weixinApi.post('/getWatchs', async ctx =>{
+  const limit = ctx.request.body.limit
+  const openid = ctx.request.body.openid
+  const watchs = await watchDto.getWatchs(openid, limit);
+  ctx.json({
+    errorCode: 0,
+    data: watchs
+  });
+});
+
+weixinApi.post('/saveWatchs', async ctx =>{
+  const vedioId = ctx.request.body.vedioId
+  const gklog = ctx.request.body.gklog
+  const openid = ctx.request.body.openid
+  const v = {
+    openid: openid,
+    vedioId: vedioId,
+    gklog: gklog
+  };
+  const watchs = await watchDto.createWatch(v);
+  ctx.json({
+    errorCode: 0,
+    data: watchs
+  });
+});
+
+weixinApi.post('/getCustomer', async ctx =>{
+  const openid = ctx.request.body.openid
+  console.log(openid)
+  const customer = await customerDto.getCustomer(openid);
+  ctx.json({
+    errorCode: 0,
+    data: customer
   });
 });
 

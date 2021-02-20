@@ -23,8 +23,14 @@ class ReadDao {
     return read;
   }
 
-  async getReads () {
-    const reads = await Read.findAndCountAll();
+  async getReads (limit) {
+    const reads = await Read.findAndCountAll({
+      order: [
+        ['id', 'desc']
+      ],
+      limit: limit,
+      offset: 0
+    });
     return reads;
   }
 
