@@ -1,6 +1,6 @@
 import { NotFound, Forbidden } from 'lin-mizar';
 import Sequelize from 'sequelize';
-import { Watch } from '../model/Watch';
+import { Watch } from '../model/watch';
 import { Vedio } from '../model/vedio';
 import { Customer } from '../model/customer';
 
