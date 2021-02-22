@@ -47,12 +47,10 @@ Watch.init(
   )
 );
 
-Watch.associate = (models) =>{
-  Watch.belongsTo(Vedio, {as: 'vedio', foreignKey: 
-  'vedioId', targetKey: 'id'});
-  Watch.belongsTo(Customer, {as: 'customer', foreignKey: 
-  'openid', targetKey: 'openid'});
-};
+Watch.belongsTo(Vedio, {as: 'vedio', foreignKey: 
+'vedioId', targetKey: 'id'});
+Watch.belongsTo(Customer, {as: 'customer', foreignKey: 
+'openid', targetKey: 'openid'});
 
 
 
