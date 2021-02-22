@@ -12,17 +12,6 @@ class OrderDao {
     return order;
   }
 
-  async getOrderByKeyword (q) {
-    const order = await Order.findOne({
-      where: {
-        title: {
-          [Sequelize.Op.like]: `%${q}%`
-        }
-      }
-    });
-    return order;
-  }
-
   async getOrders () {
     const orders = await Order.findAndCountAll();
     return orders;

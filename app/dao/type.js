@@ -12,17 +12,6 @@ class TypeDao {
     return type;
   }
 
-  async getTypeByKeyword (q) {
-    const type = await Type.findOne({
-      where: {
-        title: {
-          [Sequelize.Op.like]: `%${q}%`
-        }
-      }
-    });
-    return type;
-  }
-
   async getTypes () {
     const types = await Type.findAndCountAll();
     return types;
@@ -65,7 +54,7 @@ class TypeDao {
     });
     if (!type) {
       throw new NotFound({
-        code: 21
+        code: 10255
       });
     }
     type.destroy();

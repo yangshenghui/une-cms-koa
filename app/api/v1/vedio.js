@@ -1,22 +1,18 @@
 import { LinRouter, NotFound, disableLoading } from 'lin-mizar';
 import { groupRequired } from '../../middleware/jwt';
 import {
-  VedioSearchValidator,
   CreateOrUpdateVedioValidator
 } from '../../validator/vedio';
 import { PositiveIdValidator } from '../../validator/common';
 
 import { getSafeParamId } from '../../lib/util';
-import { VedioNotFound } from '../../lib/exception';
 import { VedioDao } from '../../dao/vedio';
 
-// vedio 的红图实例
 const vedioApi = new LinRouter({
   prefix: '/v1/vedio',
   module: '视频'
 });
 
-// vedio 的dao 数据库访问层实例
 const vedioDto = new VedioDao();
 
 vedioApi.get('/:id', async ctx => {
@@ -33,17 +29,7 @@ vedioApi.get('/:id', async ctx => {
 
 vedioApi.get('/', async ctx => {
   const vedios = await vedioDto.getVedios(ctx);
-  console.log(vedios)
   ctx.json(vedios);
-});
-
-vedioApi.get('/search/one', async ctx => {
-  const v = await new VedioSearchValidator().validate(ctx);
-  const vedio = await vedioDto.getVedioByKeyword(v.get('query.q'));
-  if (!vedio) {
-    throw new VedioNotFound();
-  }
-  ctx.json(vedio);
 });
 
 vedioApi.post('/', async ctx => {

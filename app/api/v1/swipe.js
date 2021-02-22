@@ -8,13 +8,11 @@ import { PositiveIdValidator } from '../../validator/common';
 import { getSafeParamId } from '../../lib/util';
 import { SwipeDao } from '../../dao/swipe';
 
-// swipe 的红图实例
 const swipeApi = new LinRouter({
   prefix: '/v1/swipe',
   module: '广告'
 });
 
-// swipe 的dao 数据库访问层实例
 const swipeDto = new SwipeDao();
 
 swipeApi.get('/:id', async ctx => {

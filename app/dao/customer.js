@@ -13,17 +13,6 @@ class CustomerDao {
     return customer;
   }
 
-  async getCustomerByKeyword (q) {
-    const customer = await Customer.findOne({
-      where: {
-        title: {
-          [Sequelize.Op.like]: `%${q}%`
-        }
-      }
-    });
-    return customer;
-  }
-
   async getCustomers () {
     const customers = await Customer.findAll();
     return customers;

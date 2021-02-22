@@ -12,17 +12,6 @@ class ReadDao {
     return read;
   }
 
-  async getReadByKeyword (q) {
-    const read = await Read.findOne({
-      where: {
-        title: {
-          [Sequelize.Op.like]: `%${q}%`
-        }
-      }
-    });
-    return read;
-  }
-
   async getReads (limit) {
     const reads = await Read.findAndCountAll({
       order: [

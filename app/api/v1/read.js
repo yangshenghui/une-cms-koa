@@ -8,13 +8,11 @@ import { PositiveIdValidator } from '../../validator/common';
 import { getSafeParamId } from '../../lib/util';
 import { ReadDao } from '../../dao/read';
 
-// read 的红图实例
 const readApi = new LinRouter({
   prefix: '/v1/read',
   module: '资料'
 });
 
-// read 的dao 数据库访问层实例
 const readDto = new ReadDao();
 
 readApi.get('/:id', async ctx => {

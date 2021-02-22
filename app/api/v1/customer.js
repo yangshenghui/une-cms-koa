@@ -5,17 +5,14 @@ import { PositiveIdValidator } from '../../validator/common';
 import { getSafeParamId } from '../../lib/util';
 import { CustomerDao } from '../../dao/customer';
 
-// customer 的红图实例
 const customerApi = new LinRouter({
   prefix: '/v1/customer',
   module: '用户'
 });
 
-// customer 的dao 数据库访问层实例
 const customerDto = new CustomerDao();
 
 customerApi.get('/:openid', async ctx => {
-  const v = await new PositiveIdValidator().validate(ctx);
   const openid = v.get('path.openid');
   const customer = await customerDto.getCustomer(openid);
   if (!customer) {

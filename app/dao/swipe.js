@@ -12,17 +12,6 @@ class SwipeDao {
     return swipe;
   }
 
-  async getSwipeByKeyword (q) {
-    const swipe = await Swipe.findOne({
-      where: {
-        title: {
-          [Sequelize.Op.like]: `%${q}%`
-        }
-      }
-    });
-    return swipe;
-  }
-
   async getSwipes () {
     const swipes = await Swipe.findAndCountAll();
     return swipes;

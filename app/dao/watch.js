@@ -50,17 +50,6 @@ class WatchDao {
     return Watchs;
   }
 
-  async getWatchByKeyword (q) {
-    const Watch = await Watch.findOne({
-      where: {
-        title: {
-          [Sequelize.Op.like]: `%${q}%`
-        }
-      }
-    });
-    return Watch;
-  }
-
   async createWatch (v) {
     const watch = await Watch.findOne({
       where: {
@@ -91,7 +80,7 @@ class WatchDao {
     });
     if (!Watch) {
       throw new NotFound({
-        code: 31
+        code: 10262
       });
     }
     Watch.destroy();

@@ -15,7 +15,6 @@ const typeApi = new LinRouter({
   module: '视频分类'
 });
 
-// type 的dao 数据库访问层实例
 const typeDto = new TypeDao();
 
 typeApi.get('/:id', async ctx => {
@@ -33,15 +32,6 @@ typeApi.get('/:id', async ctx => {
 typeApi.get('/', async ctx => {
   const types = await typeDto.getTypes();
   ctx.json(types);
-});
-
-typeApi.get('/search/one', async ctx => {
-  const v = await new TypeSearchValidator().validate(ctx);
-  const type = await typeDto.getTypeByKeyword(v.get('query.q'));
-  if (!type) {
-    throw new TypeNotFound();
-  }
-  ctx.json(type);
 });
 
 typeApi.post('/', async ctx => {

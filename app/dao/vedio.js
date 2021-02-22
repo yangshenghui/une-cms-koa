@@ -28,17 +28,6 @@ class VedioDao {
     return vedios;
   }
 
-  async getVedioByKeyword (q) {
-    const vedio = await Vedio.findOne({
-      where: {
-        title: {
-          [Sequelize.Op.like]: `%${q}%`
-        }
-      }
-    });
-    return vedio;
-  }
-
   async getVedios () {
     const vedios = await Vedio.findAndCountAll({
       attributes: {
@@ -93,7 +82,7 @@ class VedioDao {
     });
     if (!vedio) {
       throw new NotFound({
-        code: 18
+        code: 10253
       });
     }
     vedio.destroy();
