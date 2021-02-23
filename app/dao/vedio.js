@@ -53,6 +53,7 @@ class VedioDao {
     vd.summary = v.get('body.summary');
     vd.image = v.get('body.image');
     vd.url = v.get('body.url');
+    vd.pdfurl = v.get('body.pdfurl');
     vd.price = v.get('body.price');
     await vd.save();
   }
@@ -70,6 +71,7 @@ class VedioDao {
     vedio.summary = v.get('body.summary');
     vedio.image = v.get('body.image');
     vedio.url = v.get('body.url');
+    vedio.pdfurl = v.get('body.pdfurl');
     vedio.price = v.get('body.price');
     await vedio.save();
   }
