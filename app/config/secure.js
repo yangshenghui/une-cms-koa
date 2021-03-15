@@ -3,11 +3,11 @@
 module.exports = {
   db: {
     database: 'une',
-    host: 'localhost',
+    host: '47.242.245.39',
     dialect: 'mysql',
     port: 3306,
-    username: 'root',
-    password: 'root',
+    username: 'une',
+    password: 'une2020',
     logging: false,
     timezone: '+08:00'
   },
