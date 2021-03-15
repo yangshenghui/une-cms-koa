@@ -6,6 +6,7 @@ import { VedioDao } from '../../dao/vedio';
 import { SwipeDao } from '../../dao/swipe';
 import { ReadDao } from '../../dao/read';
 import { WatchDao } from '../../dao/watch';
+import { QiniuDownload } from '../../extension/file/qiniu-download';
 
 
 
@@ -136,6 +137,16 @@ weixinApi.post('/getCustomer', async ctx =>{
     errorCode: 0,
     data: customer
   });
+});
+
+weixinApi.post('/downloadPdf', async ctx =>{
+  const download = new QiniuDownload();
+  const src = await download.download();
+  ctx.json({
+    errorCode: 0,
+    data: src
+  });
+  
 });
 
 
