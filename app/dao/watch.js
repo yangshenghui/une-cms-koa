@@ -59,7 +59,7 @@ class WatchDao {
     });
     if(watch) {
       watch.openid = v.openid;
-      vd.vedioId = v.vedioId
+      watch.vedioId = v.vedioId
       watch.gklog = v.gklog;
       await watch.save();
     }else {
