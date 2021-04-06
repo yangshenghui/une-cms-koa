@@ -112,11 +112,10 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
 
     var ret = {
       appid: data.appid,
-      partnerid: data.mch_id,
-      prepayid: data.prepay_id,
-      package: `prepay_id=${data.prepay_id}`,
-      noncestr: data.nonce_str,
       timeStamp: parseInt(new Date().getTime() / 1000),
+      nonceStr: data.nonce_str,
+      package: `prepay_id=${data.prepay_id}`,  
+      signType: 'MD5'
     };
     
     console.log('retretret==', ret);
@@ -134,18 +133,12 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
     string = string + '&key=' + config.getItem('wx.api_key', '');
     console.log('stringstringstring=', string);
     var crypto = require('crypto');
-    const sign = crypto.createHash('md5').update(string, 'utf8').digest('hex').toUpperCase();
-    
+    const paySign = crypto.createHash('md5').update(string, 'utf8').digest('hex').toUpperCase();
+    ret.paySign = paySign;
+    ret.prepay_id = data.prepay_id
     ctx.json({
       errorCode: 0,
-      data: {
-        appid: ret.appid,
-        timeStamp: ret.timeStamp,
-        prepay_id: ret.prepayid,
-        paySign: sign,
-        signType:'MD5',
-        nonceStr: ret.noncestr
-      }
+      data: ret
     });
   },(error)=>{
     // 获取数据失败时
