@@ -109,13 +109,43 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
 
   await promise.then((data)=>{
     console.log(data)
-    data.timeStamp = parseInt(new Date().getTime() / 1000)
-    data.paySign = data.sign
-    data.signType = 'MD5'
-    data.nonceStr = data.nonce_str
+
+    var ret = {
+      appid: data.appid,
+      partnerid: data.mch_id,
+      prepayid: data.prepay_id,
+      package: 'Sign=WXPay',
+      noncestr: data.nonce_str,
+      timestamp: parseInt(new Date().getTime() / 1000),
+    };
+    
+    console.log('retretret==', ret);
+    var keys = Object.keys(ret);
+    keys = keys.sort()
+    var newArgs = {};
+    keys.forEach(function (key) {
+        newArgs[key] = ret[key];
+    });
+    var string = '';
+    for (var k in newArgs) {
+        string += '&' + k + '=' + newArgs[k];
+    }
+    string = string.substr(1);
+    string = string + '&key=' + config.getItem('wx.api_key', '');
+    console.log('stringstringstring=', string);
+    var crypto = require('crypto');
+    const sign = crypto.createHash('md5').update(string, 'utf8').digest('hex').toUpperCase();
+    
     ctx.json({
       errorCode: 0,
-      data: data
+      data: {
+        appid: ret.appid,
+        timeStamp: ret.timestamp,
+        prepay_id: ret.prepayid,
+        paySign: sign,
+        signType:'MD5',
+        noncestr: ret.noncestr
+      }
     });
   },(error)=>{
     // 获取数据失败时

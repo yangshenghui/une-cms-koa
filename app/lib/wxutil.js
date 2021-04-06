@@ -1,4 +1,3 @@
-var xmlreader = require("xmlreader");
 var fs = require("fs");
  
  
@@ -40,6 +39,7 @@ var wxutil = {
         var crypto = require('crypto');
         return crypto.createHash('md5').update(string, 'utf8').digest('hex').toUpperCase();
     },
+
     //签名加密算法,第二次的签名
     paysignjsapifinal: function (appid,mch_id,prepayid,noncestr,timestamp,mchkey) {
         var ret = {
@@ -58,24 +58,6 @@ var wxutil = {
         var crypto = require('crypto');
         return crypto.createHash('md5').update(string, 'utf8').digest('hex').toUpperCase();
     },
-    getXMLNodeValue: function (xml) {
-        // var tmp = xml.split("<"+node_name+">");
-        // console.log('tmp',tmp);
-        // var _tmp = tmp[1].split("</"+node_name+">");
-        // console.log('_tmp',_tmp);
-        // return _tmp[0];
-        xmlreader.read(xml, function (errors, response) {
-            if (null !== errors) {
-                console.log(errors)
-                return;
-            }
-            console.log('长度===', response.xml.prepay_id.text().length);
-            var prepay_id = response.xml.prepay_id.text();
-            console.log('解析后的prepay_id==',prepay_id);
-            return prepay_id;
-        });
-    }
- 
 }
 function raw(args) {
     var keys = Object.keys(args);
