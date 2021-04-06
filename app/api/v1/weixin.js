@@ -114,7 +114,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
       appid: data.appid,
       partnerid: data.mch_id,
       prepayid: data.prepay_id,
-      package: 'Sign=WXPay',
+      package: `prepay_id=${data.prepay_id}`,
       noncestr: data.nonce_str,
       timeStamp: parseInt(new Date().getTime() / 1000),
     };
