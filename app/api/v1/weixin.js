@@ -11,12 +11,14 @@ import { QiniuDownload } from '../../extension/file/qiniu-download';
 
 
 const path = require('path');
+const fs = require('fs');
+
 
 const OAuth = require('node-wechat-oauth');
 const weixinJsConfig = require('weixin-node-jssdk');
 const wxPayment = require('wx-payment');
 
-const baseDir = path.resolve(__dirname, '../');
+const baseDir = path.resolve(__dirname, '../../../');
 
 wxPayment.init({
   appid: config.getItem('wx.appid', ''),
