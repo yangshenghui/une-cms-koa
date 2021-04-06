@@ -64,13 +64,21 @@ weixinApi.post('/getSignature', async ctx => {
   options.appSecret = config.getItem('wx.secret', '');
   options.url = ctx.request.body.oauthUrl;
   
-  weixinJsConfig(options,function(error,config){
-  	ctx.json({
-      errorCode: 0,
-      data: config
+  const promise = new Promise((resolve, reject)=>{
+    weixinJsConfig(options,function(error,config){
+      if(error == null) {
+        reject(err)
+      } else {
+        resolve(config) 
+      }
     });
   });
-  
+  const config =  await promise();
+  console.log(config)
+  ctx.json({
+    errorCode: 0,
+    data: config
+  });
 });
 
 weixinApi.post('/createUnifiedOrder', async ctx => {
