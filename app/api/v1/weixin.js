@@ -64,7 +64,7 @@ weixinApi.post('/getSignature', async ctx => {
   options.appSecret = config.getItem('wx.secret', '');
   options.url = ctx.request.body.oauthUrl;
   
-  const data = new Promise((resolve, reject)=>{
+  const promise = new Promise((resolve, reject)=>{
     weixinJsConfig(options,function(error,ret){
       if(error != null) {
         reject(error)
@@ -73,11 +73,17 @@ weixinApi.post('/getSignature', async ctx => {
       }
     });
   });
-  console.log(data)
-  ctx.json({
-    errorCode: 0,
-    data: data
-  });
+  promise.then((data)=>{
+    console.log(data)
+    ctx.json({
+      errorCode: 0,
+      data: data
+    });
+  },(error)=>{
+    // 获取数据失败时
+    console.log(error)
+  })
+  
 });
 
 weixinApi.post('/createUnifiedOrder', async ctx => {
