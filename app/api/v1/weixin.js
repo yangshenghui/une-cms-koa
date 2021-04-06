@@ -73,7 +73,7 @@ weixinApi.post('/getSignature', async ctx => {
       }
     });
   });
-  promise.then((data)=>{
+  await promise.then((data)=>{
     console.log(data)
     ctx.json({
       errorCode: 0,
