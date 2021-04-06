@@ -23,7 +23,7 @@ module.exports = {
     secret: "27209074756e3210dfd840401a3604a3",
     mch_id: "1604620078",
     api_key: "asaWdoDWFWECSedqwe128381214deqe4",
-    notify_url: "",
+    notify_url: "http://wx.unechannel.com:5000/v1/weixin/notify",
   },
   wxpay: {
       UNIFIED_ORDER: 'https://api.mch.weixin.qq.com/pay/unifiedorder',
