@@ -113,7 +113,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
     var ret = {
       appId: data.appid,
       timeStamp: parseInt(new Date().getTime() / 1000),
-      nonceStr: data.nonce_str,
+      nonceStr: Math.random().toString(36).substr(2, 15),
       package: `prepay_id=${data.prepay_id}`,  
       signType: 'MD5'
     };
