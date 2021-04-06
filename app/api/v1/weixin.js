@@ -65,19 +65,19 @@ weixinApi.post('/getSignature', async ctx => {
   options.url = ctx.request.body.oauthUrl;
   
   const promise = new Promise((resolve, reject)=>{
-    weixinJsConfig(options,function(error,config){
+    weixinJsConfig(options,function(error,ret){
       if(error == null) {
         reject(err)
       } else {
-        resolve(config) 
+        resolve(ret) 
       }
     });
   });
-  const config =  await promise();
-  console.log(config)
+  const data =  await promise();
+  console.log(data)
   ctx.json({
     errorCode: 0,
-    data: config
+    data: data
   });
 });
 
