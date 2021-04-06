@@ -12,6 +12,7 @@ import { QiniuDownload } from '../../extension/file/qiniu-download';
 
 
 const OAuth = require('node-wechat-oauth');
+const weixinJsConfig = require('weixin-node-jssdk');
 
 const weixinApi = new LinRouter({
   prefix: '/v1/weixin',
@@ -41,6 +42,22 @@ weixinApi.post('/oauthUrl', async ctx => {
   ctx.json({
     errorCode: 0,
     data: authUrl});
+});
+
+
+weixinApi.post('/getSignature', async ctx => {
+  const options = {};
+  options.appId = config.getItem('wx.appid', '');
+  options.appSecret = config.getItem('wx.secret', '');
+  options.url = ctx.request.body.oauthUrl;
+  
+  weixinJsConfig(options,function(error,config){
+  	ctx.json({
+      errorCode: 0,
+      data: config
+    });
+  });
+  
 });
 
 weixinApi.post('/weChatOAuth', async ctx => {
