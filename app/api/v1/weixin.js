@@ -111,7 +111,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
     console.log(data)
 
     var ret = {
-      appid: data.appid,
+      appId: data.appid,
       timeStamp: parseInt(new Date().getTime() / 1000),
       nonceStr: data.nonce_str,
       package: `prepay_id=${data.prepay_id}`,  
