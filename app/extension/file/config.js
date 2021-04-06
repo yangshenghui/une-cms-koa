@@ -21,7 +21,8 @@ module.exports = {
     
     appid: "wx36c8e825f9847319",
     secret: "27209074756e3210dfd840401a3604a3",
-    mch_id: "",
+    mch_id: "1604620078",
+    api_key: "asaWdoDWFWECSedqwe128381214deqe4",
     notify_url: "",
   },
   wxpay: {

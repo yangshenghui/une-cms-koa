@@ -10,9 +10,20 @@ import { QiniuDownload } from '../../extension/file/qiniu-download';
 
 
 
+const path = require('path');
 
 const OAuth = require('node-wechat-oauth');
 const weixinJsConfig = require('weixin-node-jssdk');
+const wxPayment = require('wx-payment');
+
+const baseDir = path.resolve(__dirname, '../');
+
+wxPayment.init({
+  appid: config.getItem('wx.appid', ''),
+  mch_id: config.getItem('wx.mch_id', ''),
+  apiKey: config.getItem('wx.api_key', ''), //微信商户平台API密钥
+  pfx: fs.readFileSync(path.resolve(`${baseDir}/apiclient_cert.p12`)), //微信商户平台证书 (optional，部分API需要使用)
+});
 
 const weixinApi = new LinRouter({
   prefix: '/v1/weixin',
@@ -58,6 +69,43 @@ weixinApi.post('/getSignature', async ctx => {
     });
   });
   
+});
+
+weixinApi.post('/createUnifiedOrder', async ctx => {
+  const openid = ctx.request.body.openid;
+  wxPayment.createUnifiedOrder({
+    body: '支付测试', // 商品或支付单简要描述
+    out_trade_no: '41412412454141dffsd', // 商户系统内部的订单号,32个字符内、可包含字母
+    total_fee: 100,
+    spbill_create_ip: '192.168.2.210',
+    notify_url: 'http://wx.unechannel.com:5000/v1/weixin/notify',
+    trade_type: 'JSAPI',
+    product_id: '1234567890',
+    openid: 'obsHk5xAVcM2AagnXbUFprTws31o'
+  }, function(err, result){
+    ctx.json({
+      errorCode: 0,
+      data: result
+    });
+  });
+  
+});
+
+weixinApi.post('/notify', async ctx => {
+  console.log(ctx)
+});
+
+weixinApi.post('/weChatOAuth', async ctx => {
+  const result = await oauth.getAccessToken(ctx.request.body.code);
+  const openid = result.data.openid;
+  const userinfo = await oauth.getUser(openid);
+  await customerDto.createCustomer(userinfo);
+  ctx.json({
+    errorCode: 0,
+    data: {
+      openid: openid,
+      nickname: userinfo.nickname
+    }});
 });
 
 weixinApi.post('/weChatOAuth', async ctx => {
