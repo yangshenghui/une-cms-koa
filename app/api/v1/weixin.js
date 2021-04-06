@@ -77,12 +77,15 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
     body: '支付测试', // 商品或支付单简要描述
     out_trade_no: '41412412454141dffsd', // 商户系统内部的订单号,32个字符内、可包含字母
     total_fee: 100,
-    spbill_create_ip: '192.168.2.210',
+    spbill_create_ip: '47.242.245.39',
     notify_url: 'http://wx.unechannel.com:5000/v1/weixin/notify',
     trade_type: 'JSAPI',
     product_id: '1234567890',
     openid: 'obsHk5xAVcM2AagnXbUFprTws31o'
   }, function(err, result){
+    console.log("err"+ err);
+    console.log("err"+ result);
+
     ctx.json({
       errorCode: 0,
       data: result
