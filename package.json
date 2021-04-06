@@ -64,6 +64,7 @@
     "sequelize": "^5.21.13",
     "validator": "^13.1.1",
     "weixin-node-jssdk": "^0.1.0",
-    "wx-payment": "^1.1.0"
+    "wx-payment": "^1.1.0",
+    "wxpay-v3": "^2.2.0"
   }
 }
