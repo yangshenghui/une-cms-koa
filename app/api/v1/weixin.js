@@ -116,7 +116,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
       prepayid: data.prepay_id,
       package: 'Sign=WXPay',
       noncestr: data.nonce_str,
-      timestamp: parseInt(new Date().getTime() / 1000),
+      timeStamp: parseInt(new Date().getTime() / 1000),
     };
     
     console.log('retretret==', ret);
@@ -140,7 +140,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
       errorCode: 0,
       data: {
         appid: ret.appid,
-        timeStamp: ret.timestamp,
+        timeStamp: ret.timeStamp,
         prepay_id: ret.prepayid,
         paySign: sign,
         signType:'MD5',
