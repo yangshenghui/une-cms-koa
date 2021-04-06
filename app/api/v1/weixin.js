@@ -66,8 +66,8 @@ weixinApi.post('/getSignature', async ctx => {
   
   const promise = new Promise((resolve, reject)=>{
     weixinJsConfig(options,function(error,ret){
-      if(error == null) {
-        reject(err)
+      if(error != null) {
+        reject(error)
       } else {
         resolve(ret) 
       }
