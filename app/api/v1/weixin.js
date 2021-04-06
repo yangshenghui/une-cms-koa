@@ -144,7 +144,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
         prepay_id: ret.prepayid,
         paySign: sign,
         signType:'MD5',
-        noncestr: ret.noncestr
+        nonceStr: ret.noncestr
       }
     });
   },(error)=>{
