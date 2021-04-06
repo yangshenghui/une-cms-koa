@@ -99,14 +99,14 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
       product_id: '1234567890',
       openid: 'obsHk5xAVcM2AagnXbUFprTws31o'
     }, function(err, result){
-      if(error != null) {
-        reject(error)
+      if(err != null) {
+        reject(err)
       } else {
-        resolve(ret) 
+        resolve(result) 
       }
     });
   });
-  
+
   await promise.then((data)=>{
     console.log(data)
     ctx.json({
