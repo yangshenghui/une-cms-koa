@@ -97,7 +97,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
       notify_url: 'http://wx.unechannel.com:5000/v1/weixin/notify',
       trade_type: 'JSAPI',
       product_id: '1234567890',
-      openid: 'obsHk5xAVcM2AagnXbUFprTws31o'
+      openid: openid
     }, function(err, result){
       if(err != null) {
         reject(err)
