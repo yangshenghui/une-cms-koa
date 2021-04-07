@@ -27,7 +27,7 @@ function isOptional (val) {
 
 function getTradeNo() {
   // 存放订单号
-  const orderCode = '';
+  let orderCode = '';
     
   // 6位随机数(加在时间戳后面)
   for (var i = 0; i < 6; i++)
