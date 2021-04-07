@@ -26,17 +26,20 @@ function isOptional (val) {
 }
 
 function getTradeNo() {
-  const now = new Date()
-  let month = now.getMonth() + 1
-  let day = now.getDate()
-  let hour = now.getHours()
-  let minutes = now.getMinutes()
-  let seconds = now.getSeconds()
-  month = this.setTimeDateFmt(month)
-  hour = this.setTimeDateFmt(hour)
-  minutes = this.setTimeDateFmt(minutes)
-  seconds = this.setTimeDateFmt(seconds)
-  return now.getFullYear().toString() + month.toString() + day + hour + minutes + seconds + (Math.round(Math.random() * 89 + 100)).toString()
- }
+  // 存放订单号
+  const orderCode = '';
+    
+  // 6位随机数(加在时间戳后面)
+  for (var i = 0; i < 6; i++)
+  { 
+    orderCode += Math.floor(Math.random() * 10);
+  }
+
+  // 时间戳(用来生成订单号)
+  orderCode = 'D' + new Date().getTime() + orderCode;
+
+  // 打印
+  return orderCode
+}
 
 export { getSafeParamId, isOptional, getTradeNo };
