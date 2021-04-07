@@ -148,14 +148,16 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
   
 });
 
-weixinApi.post('/notify', wxPayment.wxCallback(function(msg, req, res, next){
+weixinApi.post('/notify', ctx => {
+  const req = ctx.request
+  const res = ctx.response
+  const body = ctx.request.body
+
   console.log(req)
   console.log(res)
-  console.log(msg)
-  // 处理商户业务逻辑
-  // res.success() 向微信返回处理成功信息，res.fail()返回失败信息。
-  res.success();
-}));
+  console.log(body)
+
+});
 
 weixinApi.post('/weChatOAuth', async ctx => {
   const result = await oauth.getAccessToken(ctx.request.body.code);
