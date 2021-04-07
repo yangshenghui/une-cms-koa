@@ -36,7 +36,7 @@ class CustomerDao {
       customer.phone = v.phone;
       customer.emai = v.email;
       customer.company = v.company;
-      customer.position = v.headimgurl;
+      customer.position = v.position;
       customer.issendemail = v.issendemail;
       customer.ismember = v.ismember;
       await customer.save();
@@ -53,7 +53,7 @@ class CustomerDao {
       ct.phone = v.phone;
       ct.emai = v.email;
       ct.company = v.company;
-      ct.position = v.headimgurl;
+      ct.position = v.position;
       ct.issendemail = v.issendemail;
       ct.ismember = v.ismember;
       await ct.save();
