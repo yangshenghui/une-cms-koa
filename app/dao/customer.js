@@ -34,7 +34,7 @@ class CustomerDao {
       customer.headimgurl = v.headimgurl;
       customer.name = v.name;
       customer.phone = v.phone;
-      customer.emai = v.email;
+      customer.email = v.email;
       customer.company = v.company;
       customer.position = v.position;
       customer.issendemail = v.issendemail;
@@ -51,7 +51,7 @@ class CustomerDao {
       ct.headimgurl = v.headimgurl;
       ct.name = v.name;
       ct.phone = v.phone;
-      ct.emai = v.email;
+      ct.email = v.email;
       ct.company = v.company;
       ct.position = v.position;
       ct.issendemail = v.issendemail;
