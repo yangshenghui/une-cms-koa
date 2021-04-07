@@ -93,7 +93,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
     wxPayment.createUnifiedOrder({
       body: '支付测试', // 商品或支付单简要描述
       out_trade_no: getTradeNo(), // 商户系统内部的订单号,32个字符内、可包含字母
-      total_fee: 100,
+      total_fee: config.getItem('wx.total_fee', ''),
       spbill_create_ip: '47.242.245.39',
       notify_url: config.getItem('wx.notify_url', ''),
       trade_type: 'JSAPI',
