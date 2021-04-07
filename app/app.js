@@ -6,6 +6,9 @@ import serve from 'koa-static';
 import { config, json, logging, success, jwt, Loader } from 'lin-mizar';
 import { PermissionModel } from './model/permission';
 
+const xmlParser = require('koa-xml-body')
+
+
 /**
  * 首页
  */
@@ -35,6 +38,11 @@ function applyCors (app) {
 function applyBodyParse (app) {
   // 参数解析
   app.use(KoaBodyParser());
+}
+
+function applyXmlParse (app) {
+  // 参数解析
+  app.use(xmlParser());
 }
 
 /**
@@ -81,6 +89,7 @@ function applyJwt (app) {
  */
 async function createApp () {
   const app = new Koa();
+  applyXmlParse(app);
   applyBodyParse(app);
   applyCors(app);
   applyStatic(app);
