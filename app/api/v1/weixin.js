@@ -88,6 +88,8 @@ weixinApi.post('/getSignature', async ctx => {
 });
 
 weixinApi.post('/createUnifiedOrder', async ctx => {
+  console.log(ctx.request.body)
+  await customerDto.createCustomer(ctx.request.body);
   const openid = ctx.request.body.openid;
   const promise = new Promise((resolve, reject)=>{
     wxPayment.createUnifiedOrder({
@@ -148,7 +150,7 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
   
 });
 
-weixinApi.post('/notify', ctx => {
+weixinApi.post('/notify', async ctx => {
   const req = ctx.request
   const res = ctx.response
   const body = ctx.request.body
@@ -156,9 +158,9 @@ weixinApi.post('/notify', ctx => {
   const successXml= '<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>';
   if (body.xml.result_code[0] === 'SUCCESS') {
     // 根据自己的业务需求支付成功后的操作
-    //......
+    await customerDto.createCustomer({ismember: "1"});
     //返回xml告诉微信已经收到，并且不会再重新调用此接口
-       ctx.body = successXml
+    ctx.body = successXml
   }
 });
 

@@ -35,7 +35,7 @@ Customer.init(
     },
     openid: {
       type: Sequelize.STRING(100),
-      allowNull: false
+      allowNull: true
     },
     nickname: {
       type: Sequelize.STRING(100),
@@ -63,15 +63,15 @@ Customer.init(
     },
     phone: {
       type: Sequelize.STRING(18),
-      allowNull: false
+      allowNull: true
     },
     name: {
       type: Sequelize.STRING(50),
-      allowNull: false
+      allowNull: true
     },
     email: {
       type: Sequelize.STRING(30),
-      allowNull: false
+      allowNull: true
     },
     company: {
       type: Sequelize.STRING(100),
@@ -83,12 +83,12 @@ Customer.init(
     },
     ismember: {
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
        defaultValue: 0,
     },
     issendemail: {
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
        defaultValue: 0,
     },
   },
