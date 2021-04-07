@@ -13,7 +13,14 @@ class Customer extends Model {
       province: this.province,
       city: this.city,
       country: this.country,
-      headimgurl: this.headimgurl
+      headimgurl: this.headimgurl,
+      phone: this.phone,
+      name: this.name,
+      email: this.email,
+      company: this.company,
+      position: this.position,
+      ismember: this.ismember,
+      issendemail: this.issendemail
     };
     return origin;
   }
@@ -53,6 +60,36 @@ Customer.init(
     headimgurl: {
       type: Sequelize.STRING(500),
       allowNull: true
+    },
+    phone: {
+      type: Sequelize.STRING(18),
+      allowNull: false
+    },
+    name: {
+      type: Sequelize.STRING(50),
+      allowNull: false
+    },
+    email: {
+      type: Sequelize.STRING(30),
+      allowNull: false
+    },
+    company: {
+      type: Sequelize.STRING(100),
+      allowNull: true
+    },
+    position: {
+      type: Sequelize.STRING(100),
+      allowNull: true
+    },
+    ismember: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+       defaultValue: 0,
+    },
+    issendemail: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+       defaultValue: 0,
     },
   },
   merge(
