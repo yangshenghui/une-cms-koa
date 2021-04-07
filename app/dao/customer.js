@@ -32,6 +32,13 @@ class CustomerDao {
       customer.city = v.gcity;
       customer.country = v.country;
       customer.headimgurl = v.headimgurl;
+      customer.name = v.name;
+      customer.phone = v.phone;
+      customer.emai = v.email;
+      customer.company = v.company;
+      customer.position = v.headimgurl;
+      customer.issendemail = v.issendemail;
+      customer.ismember = v.ismember;
       await customer.save();
     } else {
       const ct = new Customer();
@@ -42,6 +49,13 @@ class CustomerDao {
       ct.city = v.city;
       ct.country = v.country;
       ct.headimgurl = v.headimgurl;
+      ct.name = v.name;
+      ct.phone = v.phone;
+      ct.emai = v.email;
+      ct.company = v.company;
+      ct.position = v.headimgurl;
+      ct.issendemail = v.issendemail;
+      ct.ismember = v.ismember;
       await ct.save();
     } 
   }
