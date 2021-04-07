@@ -7,6 +7,7 @@ import { SwipeDao } from '../../dao/swipe';
 import { ReadDao } from '../../dao/read';
 import { WatchDao } from '../../dao/watch';
 import { QiniuDownload } from '../../extension/file/qiniu-download';
+import { getTradeNo } from '../../lib/util';
 
 
 
@@ -91,12 +92,12 @@ weixinApi.post('/createUnifiedOrder', async ctx => {
   const promise = new Promise((resolve, reject)=>{
     wxPayment.createUnifiedOrder({
       body: '支付测试', // 商品或支付单简要描述
-      out_trade_no: '41412412454141dffsd', // 商户系统内部的订单号,32个字符内、可包含字母
+      out_trade_no: getTradeNo(), // 商户系统内部的订单号,32个字符内、可包含字母
       total_fee: 100,
       spbill_create_ip: '47.242.245.39',
-      notify_url: 'http://wx.unechannel.com:5000/v1/weixin/notify',
+      notify_url: config.getItem('wx.notify_url', ''),
       trade_type: 'JSAPI',
-      product_id: '1234567890',
+      product_id: '00000000000',
       openid: openid
     }, function(err, result){
       if(err != null) {
