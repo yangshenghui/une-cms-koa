@@ -14,7 +14,7 @@ class CustomerDao {
   }
 
   async getCustomers () {
-    const customers = await Customer.findAll();
+    const customers = await Customer.findAndCountAll();
     return customers;
   }
 
