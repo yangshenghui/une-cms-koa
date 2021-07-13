@@ -6,6 +6,8 @@ import { VedioDao } from '../../dao/vedio';
 import { SwipeDao } from '../../dao/swipe';
 import { ReadDao } from '../../dao/read';
 import { WatchDao } from '../../dao/watch';
+import { ConfigDao } from '../../dao/config';
+
 import { QiniuDownload } from '../../extension/file/qiniu-download';
 import { getTradeNo } from '../../lib/util';
 
@@ -40,6 +42,7 @@ const vedioDto = new VedioDao();
 const swipeDto = new SwipeDao();
 const readDto = new ReadDao();
 const watchDto = new WatchDao();
+const configDto = new ConfigDao();
 
 const oauth = new OAuth(config.getItem('wx.appid', ''), config.getItem('wx.secret', ''));
 oauth.saveToken = (async(openid, token) => {
@@ -90,12 +93,14 @@ weixinApi.post('/getSignature', async ctx => {
 weixinApi.post('/createUnifiedOrder', async ctx => {
   console.log(ctx.request.body)
   await customerDto.createCustomer(ctx.request.body);
+  const conf = await configDto.getConfigByType('wx.total_fee');
+  console.log("conf.value：" + conf.value)
   const openid = ctx.request.body.openid;
   const promise = new Promise((resolve, reject)=>{
     wxPayment.createUnifiedOrder({
       body: '支付测试', // 商品或支付单简要描述
       out_trade_no: getTradeNo(), // 商户系统内部的订单号,32个字符内、可包含字母
-      total_fee: parseInt(config.getItem('wx.total_fee', '1')),
+      total_fee: parseInt(conf.value),
       spbill_create_ip: '47.242.245.39',
       notify_url: config.getItem('wx.notify_url', ''),
       trade_type: 'JSAPI',
