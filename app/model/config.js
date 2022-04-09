@@ -8,6 +8,7 @@ class Config extends Model {
     const origin = {
       id: this.id,
       type: this.type,
+      name: this.name,
       value: this.value
     };
     return origin;
@@ -26,6 +27,10 @@ Config.init(
       allowNull: false
     },
     value: {
+      type: Sequelize.STRING(100),
+      allowNull: false
+    },
+    name: {
       type: Sequelize.STRING(100),
       allowNull: false
     }

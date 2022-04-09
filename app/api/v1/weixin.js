@@ -289,4 +289,14 @@ weixinApi.post('/downloadPdf', async ctx =>{
 });
 
 
+weixinApi.get('/getGklogLimit', async ctx =>{
+  const gklogLimit = await configDto.getConfigByType('wx.gklog_limit');
+  ctx.json({
+    errorCode: 0,
+    data: gklogLimit
+  });
+
+});
+
+
 module.exports = { weixinApi };

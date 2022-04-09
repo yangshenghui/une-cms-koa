@@ -31,6 +31,7 @@ class ConfigDao {
   async createConfig (v) {
     const vd = new Config();
     vd.type = v.get('body.type');
+    vd.name = v.get('body.name');
     vd.value = v.get('body.value');
     await vd.save();
   }
@@ -43,6 +44,7 @@ class ConfigDao {
       });
     }
     config.type = v.get('body.type');
+    config.name = v.get('body.name');
     config.value = v.get('body.value');
     await config.save();
   }

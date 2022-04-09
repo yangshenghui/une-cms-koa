@@ -10,14 +10,14 @@ module.exports = {
     // include:[]
   },
   qiniu: {
-    AccessKey: "86j9JhIB82yVQ3nQdqWO6UEDHvtN1RZ4tAtAbRlq",
-    SecretKey: "TkuLwJ2rgo9aFqZggrYgOt8MjEgt0fuD0YV4clOU",
-    Bucket: "une",
-    Domain: "qmmb7uflf.hn-bkt.clouddn.com"
+    AccessKey: "ZAMxVeEEDyhRQk8B026_kwnKJYsrQ5Qu8qnhPvbZ",
+    SecretKey: "CYCPClzBx8WOcZLjOGZ8R2nXHYDrnSAlkZMhbQF1",
+    Bucket: "unechannel",
+    Domain: "cdn.unechannel.com"
   },
   wx: {
-    // appid: "wxf6115a511e46d7cf",
-    // secret: "dbe8288f5d7cf952726de4d48419c875",
+    // appid: "wx5fe42b994d3adb3c",
+    // secret: "1c41546e3e70e897a8d0c7245cd33730",
     
     appid: "wx36c8e825f9847319",
     secret: "27209074756e3210dfd840401a3604a3",
