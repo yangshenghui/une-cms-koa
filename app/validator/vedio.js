@@ -13,7 +13,6 @@ class CreateOrUpdateVedioValidator extends LinValidator {
     this.title = new Rule('isNotEmpty', '必须传入视频名称');
     this.summary = new Rule('isNotEmpty', '必须传入视频简介');
     this.url = new Rule('isNotEmpty', '必须传入视频链接');
-    this.price = new Rule('isNotEmpty', '必须传入视频单价');
   }
 }
 

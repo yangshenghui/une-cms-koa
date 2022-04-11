@@ -32,7 +32,8 @@ class VedioDao {
     const vedios = await Vedio.findAndCountAll({
       attributes: {
         include: [
-          [Sequelize.col('type.name'), 'typeName']
+          [Sequelize.col('type.name'), 'typeName'],
+          [Sequelize.literal(`(CASE vip WHEN '2' THEN '会员专享' ELSE '免费' END)`), 'vipName']
         ]
       },
       include: [{
@@ -55,6 +56,7 @@ class VedioDao {
     vd.url = v.get('body.url');
     vd.pdfurl = v.get('body.pdfurl');
     vd.price = v.get('body.price');
+    vd.vip = v.get('body.vip');
     await vd.save();
   }
 
@@ -73,6 +75,7 @@ class VedioDao {
     vedio.url = v.get('body.url');
     vedio.pdfurl = v.get('body.pdfurl');
     vedio.price = v.get('body.price');
+    vedio.vip = v.get('body.vip');
     await vedio.save();
   }
 

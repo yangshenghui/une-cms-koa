@@ -9,9 +9,11 @@ class Read extends Model {
       id: this.id,
       name: this.name,
       url: this.url,
+      vip: this.vip
     };
     return origin;
   }
+
 }
 
 Read.init(
@@ -27,6 +29,10 @@ Read.init(
     },
     url: {
       type: Sequelize.STRING(400),
+      allowNull: false
+    },
+    vip: {
+      type: Sequelize.STRING(2),
       allowNull: false
     }
   },

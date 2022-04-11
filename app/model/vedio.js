@@ -15,7 +15,8 @@ class Vedio extends Model {
       image: this.image,
       url: this.url,
       pdfurl: this.pdfurl,
-      price: this.price
+      price: this.price,
+      vip: this.vip
     };
     return origin;
   }
@@ -59,6 +60,10 @@ Vedio.init(
     },
     price: {
       type: Sequelize.STRING(1000),
+      allowNull: true
+    },
+    vip: {
+      type: Sequelize.STRING(2),
       allowNull: false
     }
   },

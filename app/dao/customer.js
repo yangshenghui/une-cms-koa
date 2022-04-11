@@ -12,9 +12,17 @@ class CustomerDao {
     });
     return customer;
   }
-
   async getCustomers () {
-    const customers = await Customer.findAndCountAll();
+    const customers = await Customer.findAndCountAll( {
+        attributes: [
+          'id','openid','nickname','province','city','country','headimgurl','phone','name','email','company','position',
+          [Sequelize.literal(`(CASE sex WHEN '1' THEN '男' ELSE '女' END)`), 'sex'],
+          [Sequelize.literal(`(CASE ismember WHEN '1' THEN '是' ELSE '否' END)`), 'ismember'],
+          [Sequelize.literal(`(CASE issendemail WHEN '1' THEN '是' ELSE '否' END)`), 'issendemail']
+
+        ],
+      }
+    );
     return customers;
   }
 

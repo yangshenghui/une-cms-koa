@@ -213,6 +213,15 @@ weixinApi.post('/getVedioById', async ctx =>{
   });
 });
 
+weixinApi.post('/getReadById', async ctx =>{
+  const id = ctx.request.body.id
+  const read = await readDto.getRead(id);
+  ctx.json({
+    errorCode: 0,
+    data: read
+  });
+});
+
 weixinApi.post('/getVediosByTypeId', async ctx =>{
   const typeId = ctx.request.body.typeId
   const limit = ctx.request.body.limit
@@ -236,6 +245,7 @@ weixinApi.get('/getSwipes', async ctx =>{
 weixinApi.post('/getReads', async ctx =>{
   const limit = ctx.request.body.limit
   const reads = await readDto.getReads(limit);
+  console.log(reads)
   ctx.json({
     errorCode: 0,
     data: reads
